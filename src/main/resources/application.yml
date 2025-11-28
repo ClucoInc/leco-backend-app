@@ -1,0 +1,47 @@
+server:
+  port: 8081
+
+spring:
+  # Use external MongoDB (installed locally). Change the URI if you created a user.
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/leco_usermgmt
+
+  # Mailtrap SMTP configuration
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username: f282fcf530a193
+    password: 93254d7ae627d4
+    protocol: smtp
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true        # TLS optional but recommended
+      mail.smtp.starttls.required: false
+      mail.smtp.ssl.enable: false
+      mail.smtp.connectiontimeout: 10000
+      mail.smtp.timeout: 10000
+      mail.smtp.writetimeout: 10000
+      mail.debug: true                       # Log SMTP communication
+
+  # Embedded Flapdoodle Mongo configuration (dev only).
+  mongodb:
+    embedded:
+      version: 6.0.26
+
+app:
+  frontend:
+    base-url: http://localhost:5173
+
+  mail:
+    from: "Leco <no-reply@leco.com>"          # Email address shown to the receiver
+    log-only: false                           # IMPORTANT: must be false to send emails
+
+  jwt:
+    # Replace this with a secure value in production. You can set via env var APP_JWT_SECRET
+    secret: change-me-to-a-very-secure-secret-of-min-256-bits
+    expiration-ms: 3600000
+
+  tokens:
+    verification-expiry-minutes: 1440
+    reset-expiry-minutes: 60
